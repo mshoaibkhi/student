@@ -1,9 +1,9 @@
 version: '3.7'
 services:
   react-std:
-   build:
-      context: ../../reactapp/testapp/. # Use an image built from the specified dockerfile in the `polling-app-server` directory.
-      dockerfile: ../../reactapp/testapp/Dockerfile
+ #  build:
+ #     context: ../../reactapp/testapp/. # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+ #     dockerfile: ../../reactapp/testapp/Dockerfile
    image: "react-std:latest" 
    ports:
       - "3000:3000"
@@ -17,9 +17,9 @@ services:
     
   stdmgmt:
      
-    build:
-      context: . # Use an image built from the specified dockerfile in the `polling-app-server` directory.
-      dockerfile: Dockerfile
+   # build:
+   #   context: . # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+   #   dockerfile: Dockerfile
     image: "stdmgmt:latest"
     ports:
       - "8080:8080"
@@ -28,7 +28,7 @@ services:
     networks:
       std-net:
         ipv4_address: 10.5.0.6
-      
+  
 networks:
   std-net:
     driver: bridge
