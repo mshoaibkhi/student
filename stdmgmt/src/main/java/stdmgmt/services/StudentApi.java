@@ -15,10 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import stdmgmt.models.Student;
 import stdmgmt.repository.StudentRepository;
+
 @Service
 @RestController
-//@CrossOrigin(origins =  "http://10.5.0.5:3000")
-@CrossOrigin(origins =  "http://192.168.99.100:3000")
+
+
+//@CrossOrigin(origins =  "http://10.5.0.6:3000")
+//
+//@CrossOrigin(origins =  "http://192.168.99.100:3000")
+@CrossOrigin(origins =  "http://${cors}")
 @RequestMapping("/student/api/")
 public class StudentApi implements StudentService{
 	@Autowired
