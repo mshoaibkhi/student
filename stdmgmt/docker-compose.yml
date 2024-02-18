@@ -4,7 +4,7 @@ services:
  #  build:
  #     context: ../../reactapp/testapp/. # Use an image built from the specified dockerfile in the `polling-app-server` directory.
  #     dockerfile: ../../reactapp/testapp/Dockerfile
-   image: "react-std:latest" 
+   image: "mshoaibkhi/react-std:latest" 
    ports:
       - "3000:3000"
    expose:
@@ -12,7 +12,7 @@ services:
    depends_on:
       - stdmgmt
    environment:
-      REACT_APP_SERVICES_URL: "192.168.99.100:8080"
+      REACT_APP_SERVICES_URL: "localhost:8080"
    networks:
       std-net:
         ipv4_address: 10.5.0.5
@@ -23,38 +23,40 @@ services:
    # build:
    #   context: . # Use an image built from the specified dockerfile in the `polling-app-server` directory.
    #   dockerfile: Dockerfile
-    image: "stdmgmt:latest"
+    image: "mshoaibkhi/stdmgmt:latest"
     ports:
       - "8080:8080"
     expose:
       - "8080"
-    depends_on:
-      - mydb2 
+ #   depends_on:
+ #     - mydb2 
     environment:
-      db_url: "10.5.0.7:50000"
+      db_url: "host.docker.internal:50000"
       db_name: "std" 
-      cors: "192.168.99.100:3000"    
+      cors: "localhost:3000"    
     networks:
       std-net:
         ipv4_address: 10.5.0.6
-  mydb2:
-   image: "ibmcom/db2"
-   privileged: true
-   ports:
-      - "50000:50000"
-   expose:
-      - "50000"
-   environment:
-      DB2INST1_PASSWORD: admin123
-      LICENSE: accept
-      DBNAME: std
-  
-   volumes:
-      - /e/db:/dbdir
-   
-   networks:
-      std-net:
-        ipv4_address: 10.5.0.7   
+#    extra_hosts:
+#        - "host.docker.internal:host-gateway"
+ # mydb2:
+ #  image: "ibmcom/db2"
+ #  privileged: true
+ #  ports:
+ #     - "50000:50000"
+ #  expose:
+ #     - "50000"
+ #  environment:
+ #     DB2INST1_PASSWORD: admin123
+ #     LICENSE: accept
+ #     DBNAME: std
+ # 
+ #  volumes:
+ #     - /e/db:/dbdir
+ #  
+ #  networks:
+ #     std-net:
+ #       ipv4_address: 10.5.0.7   
 networks:
   std-net:
     driver: bridge
