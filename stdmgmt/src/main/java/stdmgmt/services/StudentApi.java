@@ -73,5 +73,5 @@ public class StudentApi implements StudentService{
 		 }
 		 _studentrepo.deleteById(_id);;
 	}
-
+	
 }
