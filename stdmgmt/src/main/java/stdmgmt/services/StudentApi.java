@@ -23,7 +23,7 @@ import stdmgmt.repository.StudentRepository;
 //@CrossOrigin(origins =  "http://10.5.0.6:3000")
 //
 //@CrossOrigin(origins =  "http://192.168.99.100:3000")
-@CrossOrigin(origins =  "http://${cors}")
+//@CrossOrigin(origins =  "http://${cors}")
 @RequestMapping("/student/api/")
 public class StudentApi implements StudentService{
 	@Autowired
