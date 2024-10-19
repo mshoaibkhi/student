@@ -1,0 +1,65 @@
+version: '3.7'
+services:
+  react-std:
+ #  build:
+ #     context: ../../reactapp/testapp/. # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+ #     dockerfile: ../../reactapp/testapp/Dockerfile
+   image: "mshoaibkhi/react-std:latest" 
+   ports:
+      - "80:3000"
+   expose:
+      - "80"   
+   depends_on:
+      - stdmgmt
+   environment:
+      REACT_APP_SERVICES_URL: "3.93.56.48:8080"
+   networks:
+      std-net:
+        ipv4_address: 10.5.0.5
+      
+       
+  stdmgmt:
+     
+   # build:
+   #   context: . # Use an image built from the specified dockerfile in the `polling-app-server` directory.
+   #   dockerfile: Dockerfile
+    image: "mshoaibkhi/stdmgmt:latest"
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    depends_on:
+      - stdmgmtdb
+    environment:
+      db_url: "10.5.0.7:5432"
+      db_name: "postgres" 
+      cors: "172.31.16.227:3000"    
+    networks:
+      std-net:
+        ipv4_address: 10.5.0.6
+  
+
+  stdmgmtdb:
+   image: "postgres"
+ 
+   ports:
+      - "8888:5432"
+   expose:
+      - "8888"
+   environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+   volumes:
+      -  /home/ec2-user/db:/dbdir
+   
+   networks:
+      std-net:
+        ipv4_address: 10.5.0.7  
+networks:
+  std-net:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+       
+     
