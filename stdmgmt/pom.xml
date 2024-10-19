@@ -36,12 +36,16 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-	
 		<dependency>
+-			<groupId>com.ibm.db2</groupId>
+-			<artifactId>jcc</artifactId>
+-			<scope>runtime</scope>
+-		</dependency>
+		<!-- dependency>
     <groupId>org.postgresql</groupId>
     <artifactId>postgresql</artifactId>
 
-     </dependency> 
+     </dependency--> 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

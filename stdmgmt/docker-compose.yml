@@ -67,7 +67,7 @@ services:
    image: "postgres"
  
    ports:
-      - "8888:5342"
+      - "8888:5432"
    expose:
       - "8888"
    environment:
